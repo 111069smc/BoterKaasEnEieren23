@@ -1,4 +1,5 @@
-from bke import MLAgent, is_winner, opponent, load, validate, RandomAgent, plot_validation
+import random
+from bke import MLAgent, is_winner, opponent, RandomAgent, train_and_plot
 
 class MyAgent(MLAgent):
     def evaluate(self, board):
@@ -10,14 +11,19 @@ class MyAgent(MLAgent):
             reward = 0
         return reward
 
-# de agent wordt opnieuw ingeladen met de functie load
-my_agent = load('MyAgent_3000') 
+random.seed(1)
 
-my_agent.learning = False
+my_agent = MyAgent() 
+random_agent = RandomAgent()
 
-validation_agent = RandomAgent()
+#hier wordt de functie aangeroepen die traint en tegelijk de voortgang plot
+train_and_plot(
+    agent=my_agent,
+    validation_agent=random_agent,
+    iterations=50,
+    trainings=100,
+    validations=1000)
 
-validation_result = validate(agent_x=my_agent, agent_o=validation_agent, iterations=100)
-
-#een functie wordt aangeroepen om de validatieresultaten te plotten
-plot_validation(validation_result)
+#iteration betekent herhaling
+#Het argument trainings geeft per herhaling aan hoeveel er getraind wordt.
+#validations komt neer op het aantal validatiespellen dat per herhaling gespeeld wordt
