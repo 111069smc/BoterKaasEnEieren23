@@ -20,7 +20,7 @@ random.seed(1)
 my_agent = MyAgent(alpha=0.1, epsilon=0.5)
 random_agent = RandomAgent()
 
-#hier wordt de agent getraint
+#de agent wordt hier getraint
 train_and_plot(
     agent=my_agent,
     validation_agent=random_agent,
