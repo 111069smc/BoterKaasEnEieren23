@@ -18,8 +18,8 @@ class MyAgent(MLAgent):
 for a in range(1, 5):
     for e in range(1, 11):
         random.seed(1)
-        print("a is ", (1/10))
-        print("e is ", (10/10))
+        print("a is ", (a/100))
+        print("e is ", (e/100))
         my_agent = MyAgent(alpha=(1/10), epsilon=(10/10))
         #my_agent = load('MyAgent_3000')
         #my_agent.learning = False
@@ -28,6 +28,20 @@ for a in range(1, 5):
         train_and_plot(
             agent=my_agent,
             validation_agent=random_agent,
-            iterations=100,
-            trainings=30,
-            validations=1000)
+            iterations=85,
+            trainings=100,
+            validations=2500)
+
+random.seed(1)
+
+my_agent = MyAgent(alpha=(0.03), epsilon=(0.5))
+#my_agent = load('MyAgent_3000')
+#my_agent.learning = False
+
+random_agent = RandomAgent()
+train_and_plot(
+    agent=my_agent,
+    validation_agent=random_agent,
+    iterations=50,
+    trainings=100,
+    validations=1000)
